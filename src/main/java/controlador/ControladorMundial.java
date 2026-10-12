@@ -37,12 +37,13 @@ public class ControladorMundial {
         return null;
     }
 
-    // Usa la sobrecarga 1 del modelo: actualizarRanking(int)
+     // Usa la sobrecarga 1 del modelo: actualizarRanking(int)
     public void actualizarRanking(String nombre, int puntos) {
         Competidor c = buscarCompetidor(nombre);
         if (c != null) {
             c.actualizarRanking(puntos);
-            vista.mostrarMensaje(nombre + " suma " + puntos + " puntos. Nuevo ranking: " + c.getRanking());
+            vista.mostrarMensaje(nombre + " suma " + puntos + " puntos. Nuevo ranking: "
+                    + c.getRanking() + " | Posición global: " + calcularPosicion(c));
         } else {
             vista.mostrarMensaje("No se encontró a " + nombre);
         }
@@ -54,18 +55,28 @@ public class ControladorMundial {
         if (c != null) {
             c.actualizarRanking(puntos, ganoMedalla);
             vista.mostrarMensaje(nombre + " suma " + puntos + " puntos (medalla: " + ganoMedalla
-                    + "). Nuevo ranking: " + c.getRanking());
+                    + "). Nuevo ranking: " + c.getRanking() + " | Posición global: " + calcularPosicion(c));
         } else {
             vista.mostrarMensaje("No se encontró a " + nombre);
         }
     }
 
-    public void mostrarCompetidores() {
+    // Recálculo de la posición global: 1 + cuántos competidores tienen más ranking
+    public int calcularPosicion(Competidor c) {
+        int posicion = 1;
+        for (int i = 0; i < cantidad; i++) {
+            if (competidores[i].getRanking() > c.getRanking()) {
+                posicion++;
+            }
+        }
+        return posicion;
+    
+    }
+ public void mostrarCompetidores() {
         for (int i = 0; i < cantidad; i++) {
             vista.mostrarMensaje(competidores[i].toString());
         }
     }
-
     // Ejecuta el programa con datos de ejemplo
     public void iniciar() {
         vista.mostrarTitulo("MUNDIAL DE CICLISMO DE PISTA - CALI");
