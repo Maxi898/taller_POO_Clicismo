@@ -8,12 +8,12 @@ package modelo;
  *
  * @author Daniel Alejandro
  */
-public class competidor extends atleta {
+public class Competidor extends Atleta {
     private int ranking;
     private double estatura;
     private double peso;
     
-    public competidor (String nombre, int edad, String pais, int ranking, double estatura, double peso){
+    public Competidor (String nombre, int edad, String pais, int ranking, double estatura, double peso){
         super (nombre, edad, pais);
         this.ranking= ranking;
         this.estatura = estatura;
@@ -46,7 +46,7 @@ public class competidor extends atleta {
     
     @Override
     public String toString(){
-        return super.toString() + ", Raking: "+ ranking + ", Estatura: " + estatura+ ", Peso: " + peso;
+        return super.toString() + ", Ranking: "+ ranking + ", Estatura: " + estatura+ ", Peso: " + peso;
     }
     public void actualizarRanking (int puntosObtenidos){
         this.ranking +=puntosObtenidos;

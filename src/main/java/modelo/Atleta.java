@@ -8,12 +8,12 @@ package modelo;
  *
  * @author Daniel Alejandro
  */
-public class atleta {
+public class Atleta {
     private String nombre;
     private int edad;
     private String pais;
     
-    public atleta (String nombre, int edad, String pais){
+    public Atleta (String nombre, int edad, String pais){
         this.nombre = nombre;
         this.edad= edad;
         this.pais= pais;
